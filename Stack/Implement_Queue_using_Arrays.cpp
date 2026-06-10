@@ -54,7 +54,7 @@ class Queue
         }
         return q[start];
       }
-      int size()
+      int Size()
       {
         return currsize;
       }
@@ -69,10 +69,10 @@ for(int i = 1; i <= 10; i++)
      cin>>x;
      q.push(x);
   }
-   cout<<"queue size is:"<<q.size()<<endl;
+   cout<<"queue size is:"<<q.Size()<<endl;
    cout<<"top element is:"<<q.peek()<<endl;
    int ele = q.pop();
     cout<<"the pop element is:"<<ele<<endl;
-   cout<<"after poping queue size is:"<<q.size()<<endl;
+   cout<<"after poping queue size is:"<<q.Size()<<endl;
    cout<<"after poping quque top element is:"<<q.peek()<<endl;
 }
