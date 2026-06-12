@@ -97,15 +97,15 @@ class Queue
                 s2.push(s1.top());
                 s1.pop();
             }
-            s2.top();
+           return s2.top();
         }
         else{
-             s2.top();
+          return  s2.top();
         }
      }
       int Size()
       {
-         return s1.size();
+         return s1.size()+s2.size();
       }
 };
 int main()
