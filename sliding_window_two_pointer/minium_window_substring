@@ -1,0 +1,112 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Solution
+{
+public:
+    string minWindow(string s, string t)
+    {
+        //         int m = s.size();
+        //   int maxlen = INT_MAX;
+        //  string ans = "";
+        //         for(int i = 0; i < m; i++)
+        //         {
+
+        //                unordered_map<char,int>mpp;
+        //                for(auto x : t)
+        //                {
+        //                   mpp[x]++;
+        //                }
+        //              for(int j = i; j < m; j++)
+        //              {
+        //                 if(mpp.find(s[j]) != mpp.end() && mpp[s[j]] != 0) mpp[s[j]]--;
+        //                   bool allzero = true;
+        //                   for(auto &it : mpp)
+        //                   {
+        //                      if(it.second != 0)
+        //                      {
+        //                          allzero = false;
+        //                          break;
+        //                      }
+        //                   }
+        //                   if(allzero)
+        //                   {
+        //                      int len = j - i + 1;
+        //                    if(maxlen > len)
+        //                    {
+        //                       maxlen = len;
+        //                        ans = s.substr(i,len);
+        //                    }
+
+        //                   }
+        //              }
+        //         }
+        //          return ans;
+
+        //    Better Solution
+        //     int n = s.size();
+        //     int m = t.size();
+        //     int minlen = INT_MAX;
+        //    int Sidx = -1;
+        //     for(int i = 0; i < n; i++)
+        //     {
+        //           vector<int>hash(256,0);
+        //         for(int k = 0; k < m; k++)
+        //         {
+        //             hash[t[k]]++;
+        //         }
+        //         int cnt = 0;
+        //         for(int j = i; j < n; j++)
+        //         {
+        //           if(hash[s[j]] > 0) cnt++;
+        //           hash[s[j]]--;
+        //           if(cnt == m)
+        //           {
+        //              int len = j - i + 1;
+        //              if(minlen > len)
+        //              {
+        //                  minlen = len;
+        //                   Sidx = i;
+        //                   break;
+        //              }
+        //           }
+        //         }
+        //     }
+        //     return (Sidx == -1) ? "" : s.substr(Sidx,minlen);
+
+        int n = s.size();
+        int m = t.size();
+        int minlen = INT_MAX;
+        int Sidx = -1;
+        int l = 0, r = 0;
+        int cnt = 0;
+        vector<int> hash(256, 0);
+
+        for (int k = 0; k < m; k++)
+        {
+            hash[t[k]]++;
+        }
+        while (r < n)
+        {
+            if (hash[s[r]] > 0)
+                cnt++;
+            hash[s[r]]--;
+
+            while (cnt == m)
+            {
+                int len = r - l + 1;
+                if (minlen > len)
+                {
+                    minlen = len;
+                    Sidx = l;
+                }
+
+                hash[s[l]]++;
+                if (hash[s[l]] > 0)
+                    cnt--;
+                l++;
+            }
+            r++;
+        }
+        return (Sidx == -1) ? "" : s.substr(Sidx, minlen);
+    }
+};
